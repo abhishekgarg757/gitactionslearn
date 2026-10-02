@@ -21,7 +21,7 @@ jobs:
       - name: First step in pipeline to checkout code
         uses: actions/checkout@v4
 
-      - name: Install Python on runner
+      - name: Install Python version on runner
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
