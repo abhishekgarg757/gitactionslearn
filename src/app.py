@@ -17,7 +17,7 @@ def is_even(number):
 
 
 def main():
-    """Print a few results so `python -m src.app` shows output."""
+    """Print the results so `python -m src.app` shows output."""
     print("add(2, 3)      =", add(2, 3))
     print("multiply(2, 3) =", multiply(2, 3))
     print("is_even(4)     =", is_even(4))
