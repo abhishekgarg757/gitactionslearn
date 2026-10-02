@@ -1,0 +1,42 @@
+name: CI
+
+# `on` = when this workflow should run
+on:
+  push:
+    branches: [main]   # every push to main
+  pull_request:
+    branches: [main]   # every PR targeting main
+
+# `jobs` = the individual pieces of work. Each job runs on its own runner.
+jobs:
+  ci:
+    runs-on: ubuntu-latest   # the machine GitHub provides for this job
+
+    # `env` = plain environment variables, visible in the job
+    env:
+      APP_NAME: github-actions-demo
+
+    steps:
+      # `uses` = run a pre-made action. `with` = its inputs.
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: pytest -v
+
+      # Build only. Pushing the image is docker.yml's job.
+      - name: Build Docker image
+        run: docker build -t $APP_NAME .
+
+      - name: Check the container runs
+        run: docker run --rm $APP_NAME
