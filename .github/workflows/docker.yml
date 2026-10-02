@@ -40,7 +40,6 @@ jobs:
 
     env:
       APP_NAME: github-actions-demo
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}
 
     steps:
       - name: Checkout code
@@ -54,11 +53,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # `tags` is a `with:` input, which is one of the places the `secrets`
+      # context IS allowed. (It is not allowed inside an `env:` block.)
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:${{ github.sha }}

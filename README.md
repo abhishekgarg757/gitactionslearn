@@ -138,6 +138,13 @@ This project uses two:
 
 **Never write a token into a workflow, a Dockerfile, or any file in the repo.**
 
+> **Gotcha worth showing in class:** you *cannot* use `secrets` inside an
+> `env:` block. Writing
+> `IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo` there
+> makes the whole workflow fail to start. Secrets are only usable in places like
+> `with:`, `run:`, and `if:` — which is why the image name is built directly in
+> the `tags:` input of `docker/build-push-action`.
+
 ---
 
 ## 9. Environment
