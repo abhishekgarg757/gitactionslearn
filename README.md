@@ -1,4 +1,4 @@
-# github-actions-demo
+# github-actions-democlass
 
 A tiny Python project used to teach GitHub Actions live in a classroom.
 
