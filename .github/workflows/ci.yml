@@ -1,4 +1,4 @@
-name:CI
+name: CI
 
 # `on` = when this workflow should run
 on:
