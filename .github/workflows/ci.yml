@@ -6,7 +6,7 @@ on:
     branches: [main]   # every push to main
   pull_request:
     branches: [main]   # every PR targeting main
-  workflow_dispatch:   # allows manual triggering of the workflow
+  
 
 # `jobs` = the individual pieces of work. Each job runs on its own runner.
 jobs:
