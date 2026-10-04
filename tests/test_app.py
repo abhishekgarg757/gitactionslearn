@@ -14,3 +14,9 @@ def test_multiply():
 def test_is_even():
     assert is_even(4) is True
     assert is_even(7) is False
+
+def test_find_average():
+    from src.app import find_average
+    assert find_average([1, 2, 3, 4, 5]) == 3
+    assert find_average([]) == 0
+    assert find_average([10, 20]) == 15
